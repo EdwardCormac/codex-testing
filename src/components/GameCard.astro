@@ -1,0 +1,8 @@
+---
+import type { Game } from '../data/games';
+const { game } = Astro.props as { game: Game };
+---
+<article class="game-card" style={`--accent:${game.accent}`}>
+  <div class="cover"><span>{game.title.split(' ').map(word => word[0]).join('').slice(0,3)}</span></div>
+  <div class="card-copy"><div class="eyebrow">{game.genres[0]} · {game.year}</div><h3><a href={`/games/${game.slug}/`}>{game.title}</a></h3><p>{game.verdict}</p><div class="chips">{game.features.slice(0, 2).map(feature => <span>{feature}</span>)}</div></div>
+</article>
