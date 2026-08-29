@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import GameCard from '../../components/GameCard.astro'; import { games } from '../../data/games';
+const picks = games.filter(game => game.runLength.includes('15') || game.runLength.includes('25') || game.runLength.includes('30'));
+const itemList = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Best Switch roguelites for short runs', itemListElement: picks.map((game, index) => ({ '@type': 'ListItem', position: index + 1, name: game.title, url: `https://rogueliteloop.com/games/${game.slug}/` })) };
+---
+<BaseLayout title="Best Switch roguelites for short runs — Roguelite Loop" description="Roguelite games on Nintendo Switch that make a 20-minute session count.">
+  <script type="application/ld+json" set:html={JSON.stringify(itemList)} /><section class="listing-hero"><p class="breadcrumbs"><a href="/">Home</a> / Collections / Short runs</p><p class="kicker">CURATED COLLECTION</p><h1>The 20-minute run.</h1><p class="lede">A great roguelite does not need an empty evening. These picks respect a short window while still letting a build come alive.</p></section><section class="game-grid">{picks.map(game => <GameCard {game} />)}</section>
+</BaseLayout>
