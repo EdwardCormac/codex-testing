@@ -23,4 +23,13 @@ For a production build, run `npm run build`. Astro emits a fully static site to 
 
 Add or update games in `src/data/games.ts`. Each record contains the editorial verdict, gameplay facts, tags, and the colour used by its cover treatment. Adding a game automatically produces `/games/<slug>/` at build time.
 
-`astro.config.mjs` currently uses `https://rogueliteloop.com` as the production site URL. Update it before deployment if the final domain differs.
+## Deploy to GitHub Pages
+
+The workflow in `.github/workflows/deploy.yml` builds and publishes the site whenever a change is merged into `main`. Enable **Settings → Pages → Source: GitHub Actions** in the repository once. The initial address is `https://edwardcormac.github.io/codex-testing/`.
+
+Before merging, verify the production build locally:
+
+```sh
+npm run build
+npm run preview
+```
