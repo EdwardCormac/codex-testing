@@ -1,0 +1,15 @@
+---
+import '../styles.css';
+interface Props { title?: string; description?: string; }
+const { title = 'Roguelite Loop — Find your next perfect run on Switch', description = 'An independent editorial directory of roguelike and roguelite games playable on Nintendo Switch.' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html><html lang="en"><head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width" />
+  <title>{title}</title><meta name="description" content={description} />
+  <link rel="canonical" href={canonical} /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:type" content="website" />
+</head><body>
+  <header class="site-header"><a class="brand" href="/"><span>⌁</span> ROGUELITE LOOP</a><nav><a href="/genre/action/">Genres</a><a href="/features/local-co-op/">Co-op</a><a href="/collections/best-for-short-runs/">Guides</a></nav></header>
+  <main><slot /></main>
+  <footer><strong>Roguelite Loop</strong><span>Independent guide to Nintendo Switch roguelites. Not affiliated with Nintendo.</span><span>Availability last reviewed August 2026.</span></footer>
+</body></html>

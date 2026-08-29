@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import GameCard from '../../components/GameCard.astro'; import { games } from '../../data/games';
+const picks = games.filter(game => game.players.includes('local'));
+---
+<BaseLayout title="Best local co-op roguelites on Switch — Roguelite Loop" description="Couch co-op roguelites for Nintendo Switch, chosen for games night.">
+  <section class="listing-hero"><p class="breadcrumbs"><a href="/">Home</a> / Features / Local co-op</p><p class="kicker">FEATURED PLAYSTYLE</p><h1>Roguelites for two.</h1><p class="lede">Hand over a Joy-Con. These are the runs that get even better when someone else is yelling at the screen.</p></section><section class="game-grid">{picks.map(game => <GameCard {game} />)}</section>
+</BaseLayout>

@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import GameCard from '../../components/GameCard.astro'; import { games, genreDetails } from '../../data/games';
+export function getStaticPaths() { return Object.keys(genreDetails).map(genre => ({ params: { genre }, props: { genre, details: genreDetails[genre as keyof typeof genreDetails] } })); }
+const { genre, details } = Astro.props; const picks = games.filter(game => game.genres.includes(genre));
+---
+<BaseLayout title={`${details.label} on Nintendo Switch — Roguelite Loop`} description={details.intro}>
+  <section class="listing-hero"><p class="breadcrumbs"><a href="/">Home</a> / Genres / {details.label}</p><p class="kicker">THE DIRECTORY</p><h1>{details.label}</h1><p class="lede">{details.intro}</p></section>
+  <section class="game-grid">{picks.map(game => <GameCard {game} />)}</section>
+</BaseLayout>

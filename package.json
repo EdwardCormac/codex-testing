@@ -1,0 +1,19 @@
+{
+  "name": "roguelite-loop",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "keywords": ["astro", "roguelike", "nintendo-switch", "directory"],
+  "author": "",
+  "license": "MIT",
+  "description": "An editorial directory for roguelike and roguelite games on Nintendo Switch.",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.2.5"
+  }
+}
