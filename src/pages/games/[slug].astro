@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import { games } from '../../data/games';
+export function getStaticPaths() { return games.map(game => ({ params: { slug: game.slug }, props: { game } })); }
+const { game } = Astro.props;
+const similar = games.filter(item => item.slug !== game.slug && item.genres.some(genre => game.genres.includes(genre))).slice(0, 3);
+const schema = { '@context': 'https://schema.org', '@type': 'VideoGame', name: game.title, datePublished: String(game.year), gamePlatform: 'Nintendo Switch', author: { '@type': 'Organization', name: game.developer }, genre: game.genres };
+---
+<BaseLayout title={`${game.title} on Switch — Roguelite Loop`} description={game.verdict}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="game-hero" style={`--accent:${game.accent}`}><div class="game-cover"><span>{game.title.split(' ').map(word => word[0]).join('').slice(0,3)}</span></div><div><p class="breadcrumbs"><a href="/">Home</a> / <a href={`/genre/${game.genres[0]}/`}>{game.genres[0]}</a> / {game.title}</p><p class="kicker">NINTENDO SWITCH · {game.year}</p><h1>{game.title}</h1><p class="lede">{game.verdict}</p><div class="chips">{game.features.map(feature => <span>{feature}</span>)}</div></div></section>
+  <section class="detail-layout"><article><h2>Why play it?</h2><p>{game.description}</p><h2>At a glance</h2><dl><div><dt>Developer</dt><dd>{game.developer}</dd></div><div><dt>Run length</dt><dd>{game.runLength}</dd></div><div><dt>Players</dt><dd>{game.players}</dd></div><div><dt>Difficulty</dt><dd>{game.difficulty}</dd></div><div><dt>Price band</dt><dd>{game.price}</dd></div></dl></article><aside><p class="kicker">THE VERDICT</p><blockquote>“{game.verdict}”</blockquote><p>Switch availability reviewed August 2026. Check the eShop for current price and regional availability.</p></aside></section>
+  {similar.length > 0 && <section class="related"><p class="kicker">KEEP THE LOOP GOING</p><h2>Try these next</h2><div class="text-links">{similar.map(item => <a href={`/games/${item.slug}/`}>{item.title} <span>→</span></a>)}</div></section>}
+</BaseLayout>
