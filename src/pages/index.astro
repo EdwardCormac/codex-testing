@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'; import GameCard from '../components/GameCard.astro'; import { games } from '../data/games';
+const featured = games.slice(0, 3);
+---
+<BaseLayout>
+  <section class="hero"><div><p class="kicker">YOUR NEXT RUN STARTS HERE</p><h1>Find the Switch roguelite that fits <em>your</em> loop.</h1><p class="lede">Clear, opinionated recommendations for games that reward another run — whether you have 20 minutes, a couch co-op partner, or a taste for punishment.</p><a class="button" href="#find">Browse the directory <span>→</span></a></div><div class="hero-orb"><span>ONE<br/>MORE<br/>RUN</span></div></section>
+  <section id="find" class="finder"><p class="kicker">START WITH YOUR MOOD</p><h2>What kind of run?</h2><div class="path-grid"><a href="/collections/best-for-short-runs/"><b>⌛</b><span>20-minute runs</span><small>Quick hits, real progress</small></a><a href="/features/local-co-op/"><b>⌘</b><span>Bring a friend</span><small>Couch co-op chaos</small></a><a href="/genre/deckbuilding/"><b>♠</b><span>Think it through</span><small>Cards & clever combos</small></a><a href="/genre/action/"><b>⚔</b><span>Test my hands</span><small>Action-first runs</small></a></div></section>
+  <section class="section-head"><div><p class="kicker">START HERE</p><h2>The essential runs</h2></div><a href="/genre/action/">View all games →</a></section><section class="game-grid">{featured.map(game => <GameCard {game} />)}</section>
+  <section class="manifesto"><p class="kicker">THE ROGUELITE LOOP</p><h2>Not a database.<br/><em>A better recommendation.</em></h2><p>Every pick tells you how long a run takes, how hard it pushes back, who it works for, and what makes it worth coming back to.</p></section>
+</BaseLayout>
